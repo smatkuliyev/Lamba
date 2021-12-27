@@ -1,9 +1,6 @@
 package lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Lambda02 {
     public static void main(String[] args) {
@@ -32,6 +29,16 @@ public class Lambda02 {
 
         kucukBul4(list);
         System.out.println("    ***     ");
+
+        onbestenBucukEnKuyukTekSayi(list);
+        System.out.println("    ***     ");
+
+        ciftKareKyucuktenBuuge(list);
+        System.out.println("    ***     ");
+
+        ciftKareBuyuktenKucuge(list);
+        System.out.println("    ***     ");
+
 
 
     }
@@ -108,8 +115,33 @@ public class Lambda02 {
     public static void kucukBul4(List<Integer> list) {
     //  Optional<Integer> min = list.stream().sorted().findFirst();
 
-        Integer min = list.stream().reduce(Integer.MAX_VALUE,(x,y)->x<y?x:y);
+        Integer min = list.
+                stream().
+                reduce(Integer.MAX_VALUE,(x,y)->x<y?x:y);
         System.out.println(min);
+    }
+    // List'teki 15 den buyuk en kucuk tek sayiyi yazdiriniz
+    public static void onbestenBucukEnKuyukTekSayi(List<Integer> list) {
+        System.out.println(list.stream().filter(t -> t > 15).filter(t -> t % 2 != 0).reduce(Lambda02::minBul));
+        //  System.out.println(list.
+        //  stream().                               // akisa girdi
+        //  filter(t -> t > 15 && t % 2 != 0).      // tek ve 15den buyuk sart saglandi
+        //  reduce(Integer::min));                  // min deger reduce edildi
+    }
+
+    // List'in cift elemanlarinin karelerini kucukten buyuge yazdiriniz
+    public static void ciftKareKyucuktenBuuge(List<Integer> list) {
+        list.stream().filter(Lambda01::ciftBul).map(t -> t * t).sorted().forEach(Lambda01::printEl);
+    }
+
+    // List'in tek elemanlarinin karelerini buyukten kucuge yazdiriniz
+    public static void ciftKareBuyuktenKucuge(List<Integer> list) {
+        list.
+                stream().
+                filter(t->t%2!=0).
+                map(t -> t * t).
+                sorted(Comparator.reverseOrder()).
+                forEach(Lambda01::printEl);
     }
 
 
