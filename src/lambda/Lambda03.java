@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lambda03 {
     public static void main(String[] args) {
@@ -36,6 +37,12 @@ public class Lambda03 {
 
         System.out.println();
         karSayiSirala(list);
+
+        System.out.println();
+        karSayiSirala2(list);
+
+        System.out.println();
+        sonHarfSiralaILkHaric(list);
 
     }
 
@@ -103,7 +110,6 @@ public class Lambda03 {
     //    } else {
     //        System.out.println("List elemanlari 7 harften buyuk degiil");
     //    }
-
         System.out.println(list.
                 stream().
                 allMatch(t -> t.length() <= 7) ?"List elemanlari 7 harften buyuk degil" : "List elemanlari 7 harften buyuk" );
@@ -115,20 +121,17 @@ public class Lambda03 {
         System.out.println(list.
                 stream().
                 noneMatch(t -> t.startsWith("w")) ? "w ile baslayan" : "w ile baslamiyor");
-
     }
 
 
     // List elemanlarinin "x" ile bitme kontrol ediniz
     public static void xBitirKontrol(List<String> list){
-
         System.out.println(list.
                 stream().
                 anyMatch(t -> t.endsWith("x")) ? "x ile bitiyor" : "x ile bitmiyor");
         //  anyMatch() --> enaz bir eleman sarti saglarsa true aksi durumda false return eder
         //  allMatch() --> tum  elemanlar sarti saglarsa true en az bir eleman sarti saglamazsa false return eder.
         //  noneMatch() --> hic bir eleman sarti SAGLAMAZSA true en az bir eleman sarti SAGLARSA false return eder.
-
     }
 
     // Karakter sayisi en buyuk elemani yazdiriniz
@@ -136,8 +139,28 @@ public class Lambda03 {
         System.out.println(list.
                 stream().
                 sorted(Comparator.comparing(t -> t.toString().length()).reversed()).
-                findFirst());
+                findFirst());           // ilk elemani bulur
     }
+
+    // Karakter sayisi en buyuk elemani yazdiriniz
+    public static void karSayiSirala2(List<String> list){
+        Stream<String> sonIsim = list.
+                stream().
+                sorted(Comparator.comparing(t -> t.toString().length()).reversed()).
+                limit(1);                // ilk elemani alir, kac yazarsak o kadar eleman ile sinirlandirir
+        System.out.println(Arrays.toString(sonIsim.toArray()));
+    }
+
+    // List elemanlarini son harfine gore siralayip ilk eleman haric kalan elemanlari yazdiriniz
+    public static void sonHarfSiralaILkHaric(List<String> list) {
+        list.
+                stream().
+                sorted(Comparator.comparing(t->t.charAt(t.length()-1))).
+         //     sorted(Comparator.reverseOrder()).
+                skip(1).                                // akistan çıkan elemanlarin 1. elemani atlar, kac yazarsak o kadar eleman atlar
+                forEach(t-> System.out.print(t + " "));
+    }
+
 
 
 }
