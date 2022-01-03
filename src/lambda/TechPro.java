@@ -13,7 +13,7 @@ public class TechPro {
         this.batch = batch;
         this.batchName = batchName;
         this.batchOrt = batchOrt;
-        OgrcSayisi = ogrcSayisi;
+        this.OgrcSayisi = ogrcSayisi;
     }
 
     public String getBatch() {

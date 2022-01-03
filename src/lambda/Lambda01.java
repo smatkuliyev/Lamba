@@ -13,7 +13,7 @@ public class Lambda01 {
 	   3) "Functional Programming" hiz, code kisaligi, code okunabilirligi
 	   ve hatasiz code yazma acilarindan cok faydalidir.
 	   4) Lambda01 sadece collections'larda(List, Queue ve Set) ve array'lerde kullanilabilir ancak map'lerde kullan?lmaz.
-	      Lambda01 kullanmak hatas?z code kullanmakt?r.
+	      Lambda01 kullanmak hatasiz code kullanmaktir.
 	*/
 	public static void main(String[] args) {
 		

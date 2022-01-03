@@ -38,7 +38,7 @@ public class Lambda06 {
     //TASK 04 --> haluk.txt dosyasinda "basari" kelimesinin kac satirda gectiginiz yazdiriniz
         System.out.println("\n*** haluk.txt dosyasinda basari kelimesinin kac satirda gectiginiz yazdiriniz -->  ");
         System.out.println(Files.lines(Paths.get("src/lambda/haluk.txt")).
-                filter(t -> t.contains("basari")).
+                filter(t -> t.contains("Basari")).
                 count());
 
 
@@ -57,15 +57,67 @@ public class Lambda06 {
 
     //TASK 06 --> haluk.txt dosyasindaki tum kelimeleri natural order  yazdiriniz.
         System.out.println("\n*** haluk.txt dosyasindaki tum kelimeleri natural order  yazdiriniz. -->  ");
-    //TASK 07 --> haluk.txt dosyasinda "basari" kelimesinin kac kere gectigini buyuk harf kucuk harf bagımsız yaziniz.
+        System.out.println(Files.lines(Paths.get("src/lambda/haluk.txt")).
+                map(t -> t.split(" ")).
+                flatMap(Arrays::stream).                // arrays class'in yeni bir akis olusturuldu
+                sorted().
+                distinct().
+                collect(Collectors.toList()));
+
+
+        //TASK 07 --> haluk.txt dosyasinda "basari" kelimesinin kac kere gectigini buyuk harf kucuk harf bagımsız yaziniz.
         System.out.println("\n*** haluk.txt dosyasinda basari kelimesinin kac kere gectigini  yazdiriniz. -->  ");
-    //TASK 08 --> haluk.txt dosyasinda "a" harfi gecen kelimelerin sayisini ekrana yazdiran programi yaziniz
+        System.out.println(Files.lines(Paths.get("src/lambda/haluk.txt")).
+                map(t -> t.toLowerCase().split(" ")).
+                flatMap(Arrays::stream).
+                sorted().
+                filter(t -> t.contains("basari")).
+                count());
+
+
+        //TASK 08 --> haluk.txt dosyasinda "a" harfi gecen kelimelerin sayisini ekrana yazdiran programi yaziniz
         System.out.println("\n*** haluk.txt dosyasinda a harfi gecen kelimelerin sayisini ekrana yazdiran programi yazdiriniz. -->  ");
-    //TASK 09 --> haluk.txt dosyasinda icinde "a" harfi gecen kelimeleri yazdiriniz
+        System.out.println(Files.lines(Paths.get("src/lambda/haluk.txt")).
+                map(t -> t.split(" ")).
+                flatMap(Arrays::stream).
+                filter(t -> t.contains("a")).
+                count());
+
+
+        //TASK 09 --> haluk.txt dosyasinda icinde "a" harfi gecen kelimeleri yazdiriniz
         System.out.println("\n*** haluk.txt dosyasinda a harfi gecen kelimeler yazdiriniz. -->  ");
-    //TASK 10 --> haluk.txt dosyasinda kac /farklı harf kullanildigini yazdiriniz
-        System.out.println("\n*** haluk.txt dosyasinda kac /farklı harf kullanildigini  yazdiriniz. -->  ");
-    //TASK 11 --> haluk.txt dosyasinda kac farkli kelime kullanildigini yazdiriniz
+        System.out.println(
+                Files.lines(Paths.get("src/lambda/haluk.txt")).
+                map(t -> t.split(" ")).
+                flatMap(Arrays::stream).
+         //     filter(t -> t.contains("a")).forEach(System.out::println);
+                collect(Collectors.toList())
+        );
+
+
+        //TASK 10 --> haluk.txt dosyasinda kac /farkli harf kullanildigini yazdiriniz
+        System.out.println("\n*** haluk.txt dosyasinda kac /farkli harf kullanildigini  yazdiriniz. -->  ");
+        System.out.println(
+                Files.lines(Paths.get("src/lambda/haluk.txt")).
+                map(t -> t.replaceAll("\\W", "").
+                        replaceAll("\\d", "").
+                        split("")).
+                flatMap(Arrays::stream).
+                        distinct().
+                        count()
+        );
+
+
+        //TASK 11 --> haluk.txt dosyasinda kac farkli kelime kullanildigini yazdiriniz
         System.out.println("\n*** haluk.txt dosyasinda kac farkli kelime kullanildigini  yazdiriniz. -->  ");
+        System.out.println(
+                Files.lines(Paths.get("src/lambda/haluk.txt")).
+                        map(t -> t.replaceAll("[.!?,\\\\-]", "").
+                                split(" ")).
+                        flatMap(Arrays::stream).
+                        distinct().
+                        collect(Collectors.toList())
+        );
+
     }
 }

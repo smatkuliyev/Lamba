@@ -1,4 +1,4 @@
-package lambdaInstruction;
+package lambda;
 
 import lambda.Lambda01;
 
