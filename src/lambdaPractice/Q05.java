@@ -2,6 +2,7 @@ package lambdaPractice;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,11 @@ public class Q05 {
         String arr[] = {"A", "B", "D", "C", "B", "A", "A", "B", "B"};
 
     //   String arr2[] = (String[]) Arrays.stream(arr).sorted().distinct().toArray();
+        List<String> list = Arrays.asList(arr);
+        list.stream()
+                .filter(t -> Collections.frequency(list, t) > 1)
+                .collect(Collectors.toSet())
+                .forEach(t -> System.out.println(t));
 
 
 
