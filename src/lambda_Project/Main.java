@@ -23,10 +23,13 @@ public class Main {
         soysimGoreSirala("Can");
         System.out.println();
         ortHesapla();
+        System.out.println();
 
 
 
     }
+
+
 
     private static void ortHesapla() {
         double toplam = ogListesi.stream().mapToDouble(Ogrenci::getDiplomaNotu).reduce(0, Double::sum);
